@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1A1A1A">
+<title>Run On The Wild Side — Coach Running</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cuivre:#C9723E;--cuivre-clair:#E08C5A;--blanc-casse:#F5F5F5;--gris-roche:#1A1A1A;--noir-ardoise:#000000;--cuivre-dark:#A85C2E;--cuivre-glow:rgba(201,114,62,.15);--cuivre-glow2:rgba(201,114,62,.08);--border-subtle:rgba(201,114,62,.2);--text-muted:#888;--success:#4CAF50;--danger:#e74c3c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:var(--noir-ardoise);color:var(--blanc-casse);min-height:100vh;overflow-x:hidden;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+.app-header{background:linear-gradient(135deg,var(--gris-roche),#0d0d0d);border-bottom:2px solid var(--cuivre);padding:14px 18px;padding-top:max(14px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-svg{width:42px;height:42px}
+.brand-text h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:2px;text-transform:uppercase;line-height:1.1}
+.brand-text .tagline{font-family:'Oswald',sans-serif;font-weight:400;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--cuivre)}
+.header-sub{font-size:.68rem;color:var(--text-muted);letter-spacing:1px}
+.tab-nav{display:flex;background:var(--gris-roche);border-bottom:1px solid var(--border-subtle);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{flex:1;min-width:70px;padding:10px 6px;background:0 0;border:none;color:var(--text-muted);font-family:'Oswald',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;transition:.3s;position:relative;white-space:nowrap}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--cuivre);transition:.3s;transform:translateX(-50%)}
+.tab-btn:hover{color:var(--cuivre-clair)}
+.tab-btn.active{color:var(--cuivre)}
+.tab-btn.active::after{width:55%}
+.tab-icon{display:block;font-size:1rem;margin-bottom:2px}
+.tab-content{display:none;padding:20px;max-width:920px;margin:0 auto;animation:fadeIn .4s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.3rem;color:var(--cuivre);text-transform:uppercase;letter-spacing:2px;margin-bottom:5px}
+.section-desc{font-size:.8rem;color:var(--text-muted);margin-bottom:20px;line-height:1.5}
+.sub-title{font-family:'Oswald',sans-serif;color:var(--cuivre);font-size:.95rem;letter-spacing:1px;margin:22px 0 10px;text-transform:uppercase}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:.75rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--cuivre-clair);margin-bottom:6px}
+.opt{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.65rem;color:var(--text-muted);text-transform:none;letter-spacing:0;margin-left:5px}
+input[type="text"],input[type="number"],input[type="date"],select,textarea{width:100%;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid var(--border-subtle);border-radius:5px;color:var(--blanc-casse);font-family:'Montserrat',sans-serif;font-size:.85rem;transition:.3s;outline:0}
+input:focus,select:focus,textarea:focus{border-color:var(--cuivre);box-shadow:0 0 0 3px var(--cuivre-glow)}
+select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%23C9723E' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+select option{background:var(--gris-roche);color:var(--blanc-casse)}
+textarea{resize:vertical;min-height:60px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}}
+.checkbox-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:7px}
+.checkbox-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:5px;cursor:pointer;transition:.2s}
+.checkbox-item:hover{border-color:var(--border-subtle);background:var(--cuivre-glow2)}
+.checkbox-item input[type="checkbox"]{accent-color:var(--cuivre);width:14px;height:14px;cursor:pointer}
+.checkbox-item span{font-size:.8rem}
+.radio-grid{display:grid;gap:8px}
+.radio-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:7px;cursor:pointer;transition:.3s}
+.radio-item:hover{border-color:var(--border-subtle);background:var(--cuivre-glow2)}
+.radio-item.selected{border-color:var(--cuivre);background:var(--cuivre-glow)}
+.radio-item input[type="radio"]{accent-color:var(--cuivre);width:14px;height:14px;margin-top:2px;cursor:pointer}
+.radio-info{flex:1}
+.radio-info .radio-label{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.5px}
+.radio-info .radio-desc{font-size:.73rem;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.btn{padding:12px 24px;font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:5px;cursor:pointer;transition:.3s}
+.btn-primary{background:linear-gradient(135deg,var(--cuivre),var(--cuivre-dark));color:var(--blanc-casse);box-shadow:0 4px 14px rgba(201,114,62,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(201,114,62,.4)}
+.btn-secondary{background:0 0;color:var(--cuivre);border:1px solid var(--cuivre)}
+.btn-secondary:hover{background:var(--cuivre-glow)}
+.btn-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.generate-section{text-align:center;padding:32px 18px;border:2px dashed var(--border-subtle);border-radius:10px;margin:24px 0;background:var(--cuivre-glow2)}
+.generate-section p{font-size:.8rem;color:var(--text-muted);margin-bottom:16px}
+.plan-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-bottom:20px}
+.summary-card{background:rgba(255,255,255,.04);border:1px solid var(--border-subtle);border-radius:7px;padding:12px;text-align:center}
+.summary-card .val{font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;color:var(--cuivre)}
+.summary-card .lbl{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+.week-block{margin-bottom:14px;border:1px solid rgba(255,255,255,.08);border-radius:7px;overflow:hidden}
+.week-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:rgba(201,114,62,.1);border-bottom:1px solid var(--border-subtle);cursor:pointer;transition:.2s}
+.week-header:hover{background:rgba(201,114,62,.15)}
+.week-header h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;color:var(--cuivre);letter-spacing:.8px}
+.week-header .wv{font-size:.73rem;color:var(--text-muted)}
+.week-header .chev{color:var(--cuivre);transition:transform .3s;font-size:.75rem}
+.week-header .chev.open{transform:rotate(180deg)}
+.week-body{display:none}
+.week-body.open{display:block}
+.day-row{display:grid;grid-template-columns:80px 1fr 60px;gap:8px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;font-size:.78rem}
+.day-row:last-child{border-bottom:none}
+.day-name{font-family:'Oswald',sans-serif;font-weight:500;color:var(--cuivre-clair);text-transform:uppercase;letter-spacing:.5px;font-size:.73rem}
+.day-content{color:var(--blanc-casse);line-height:1.45}
+.day-content .st{font-weight:600;color:var(--cuivre);font-size:.69rem;text-transform:uppercase;letter-spacing:.5px}
+.day-km{text-align:right;color:var(--text-muted);font-size:.73rem}
+.rest-day{color:var(--text-muted);font-style:italic}
+.paces-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:12px}
+.pace-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:10px;text-align:center}
+.pace-card .pp{font-family:'Oswald',sans-serif;font-weight:600;font-size:.8rem;color:var(--cuivre)}
+.pace-card .pv{font-weight:600;font-size:.92rem;margin:2px 0}
+.pace-card .pl{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.glossary-item{padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:7px;margin-bottom:8px;transition:.2s}
+.glossary-item:hover{border-color:var(--border-subtle)}
+.glossary-term{font-family:'Oswald',sans-serif;font-weight:700;font-size:.95rem;color:var(--cuivre);text-transform:uppercase;letter-spacing:.8px}
+.glossary-abbr{font-weight:300;font-size:.72rem;color:var(--cuivre-clair);margin-left:6px}
+.glossary-def{font-size:.8rem;line-height:1.55;margin-top:5px}
+.glossary-example{font-size:.72rem;color:var(--text-muted);margin-top:5px;padding-left:10px;border-left:2px solid var(--border-subtle);font-style:italic}
+.nutri-section{margin-bottom:24px}
+.nutri-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:7px;padding:16px;margin-bottom:10px}
+.nutri-card h4{font-family:'Oswald',sans-serif;font-weight:600;font-size:.85rem;color:var(--cuivre);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.nutri-card p,.nutri-card li{font-size:.8rem;line-height:1.55}
+.nutri-card ul{padding-left:16px;margin-top:5px}
+.nutri-card li{margin-bottom:3px}
+.nutri-hl{background:var(--cuivre-glow);border:1px solid var(--border-subtle);border-radius:5px;padding:10px 14px;margin-top:8px;font-size:.8rem;color:var(--cuivre-clair);font-weight:500}
+.nutri-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.75rem}
+.nutri-table th{background:rgba(201,114,62,.15);color:var(--cuivre);font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid var(--border-subtle)}
+.nutri-table td{padding:6px 9px;border-bottom:1px solid rgba(255,255,255,.04)}
+.day-constraint{display:grid;grid-template-columns:100px 1fr;gap:8px;align-items:center;padding:6px 0}
+.day-constraint label{font-size:.78rem;color:var(--cuivre-clair);font-family:'Oswald',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.day-constraint select{font-size:.78rem;padding:7px 10px}
+.constraint-reason{font-size:.75rem;padding:6px 10px;margin-top:3px}
+.notif{position:fixed;top:18px;right:18px;padding:11px 16px;background:var(--gris-roche);border:1px solid var(--cuivre);border-radius:7px;color:var(--blanc-casse);font-size:.8rem;z-index:1000;animation:slideIn .3s ease;box-shadow:0 4px 18px rgba(0,0,0,.5)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+.app-footer{text-align:center;padding:24px 18px;padding-bottom:max(24px,env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.06);margin-top:32px}
+.app-footer p{font-size:.65rem;color:var(--text-muted);letter-spacing:.8px}
+.app-footer .fb{font-family:'Oswald',sans-serif;color:var(--cuivre);font-weight:600}
+/* PRINT */
+@media print{
+  body{background:#fff;color:#000;font-size:9pt}
+  .app-header,.tab-nav,.generate-section,.btn-row,.app-footer,.notif,#tab-course,#tab-profil,#tab-sante,#tab-type-plan,#tab-nutrition,#tab-glossaire{display:none!important}
+  #tab-plan{display:block!important;max-width:100%;padding:0}
+  .week-body{display:block!important}
+  .week-block{break-inside:avoid;border-color:#ccc;page-break-inside:avoid}
+  .week-header{background:#f0f0f0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .week-header h3,.day-name{color:#333!important}
+  .summary-card{border-color:#ccc}
+  .summary-card .val{color:#A85C2E!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pace-card{border-color:#ccc}
+  #printProfile{display:block!important;border:1px solid #ccc;padding:12px;margin-bottom:16px;page-break-after:avoid}
+  #printProfile h3{color:#A85C2E;font-size:11pt}
+  #printProfile td{padding:3px 8px;font-size:8pt;border-bottom:1px solid #eee}
+  #printProfile th{text-align:left;font-weight:600;padding:3px 8px;font-size:8pt}
+  @page{size:A3 landscape;margin:12mm}
+}
+#printProfile{display:none}
+/* SIMULATOR */
+.sim-result{margin-top:20px;padding:20px;background:rgba(255,255,255,.04);border:1px solid var(--border-subtle);border-radius:8px}
+.sim-row{display:grid;grid-template-columns:140px 1fr 100px;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:center;font-size:.82rem}
+.sim-row:last-child{border-bottom:none}
+.sim-dist{font-family:'Oswald',sans-serif;font-weight:600;color:var(--cuivre);text-transform:uppercase;letter-spacing:.5px}
+.sim-time{font-weight:600;font-size:.95rem}
+.sim-pace{color:var(--text-muted);font-size:.78rem}
+.sim-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin-top:4px;overflow:hidden}
+.sim-bar-fill{height:100%;background:linear-gradient(90deg,var(--cuivre),var(--cuivre-clair));border-radius:3px;transition:width .6s ease}
+.sim-factors{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:16px}
+.sim-factor{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:10px;text-align:center;font-size:.75rem}
+.sim-factor .sf-val{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;color:var(--cuivre)}
+.sim-factor .sf-lbl{color:var(--text-muted);margin-top:2px}
+.sim-factor.positive .sf-val{color:var(--success)}
+.sim-factor.negative .sf-val{color:var(--danger)}
+/* FOOD SELECTOR */
+.food-meal{margin-bottom:18px}
+.food-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.food-chip{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;cursor:pointer;font-size:.75rem;transition:.2s;user-select:none}
+.food-chip:hover{border-color:var(--border-subtle)}
+.food-chip.selected{background:var(--cuivre-glow);border-color:var(--cuivre);color:var(--cuivre-clair)}
+.food-score{margin-top:20px;padding:16px;background:rgba(255,255,255,.04);border:1px solid var(--border-subtle);border-radius:8px}
+.score-bar{height:20px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;margin:10px 0}
+.score-fill{height:100%;border-radius:10px;transition:width .5s ease}
+.score-good{background:linear-gradient(90deg,#4CAF50,#8BC34A)}
+.score-ok{background:linear-gradient(90deg,#FF9800,#FFC107)}
+.score-bad{background:linear-gradient(90deg,#f44336,#FF5722)}
+.food-tips{margin-top:12px}
+.food-tip{padding:8px 12px;background:rgba(201,114,62,.08);border-left:3px solid var(--cuivre);margin-bottom:6px;font-size:.78rem;border-radius:0 5px 5px 0}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--noir-ardoise)}
+::-webkit-scrollbar-thumb{background:var(--cuivre);border-radius:3px}
+/* ========== RESPONSIVE TABLETTE ========== */
+@media(max-width:768px){
+  .form-row-3{grid-template-columns:1fr 1fr}
+  .sim-row{grid-template-columns:110px 1fr 80px}
+  .sim-factors{grid-template-columns:repeat(3,1fr)}
+  .day-constraint{grid-template-columns:80px 1fr}
+}
+/* ========== RESPONSIVE MOBILE ========== */
+@media(max-width:600px){
+  /* Header */
+  .app-header{padding:10px 12px;gap:8px}
+  .logo-svg{width:32px;height:32px}
+  .brand-text h1{font-size:.95rem;letter-spacing:1px}
+  .brand-text .tagline{font-size:.5rem;letter-spacing:2px}
+  .header-sub{display:none}
+  /* Tabs - horizontal scroll */
+  .tab-nav{gap:0;scrollbar-width:none;-ms-overflow-style:none}
+  .tab-nav::-webkit-scrollbar{display:none}
+  .tab-btn{min-width:56px;padding:8px 5px;font-size:.55rem;letter-spacing:.4px}
+  .tab-icon{font-size:.85rem;margin-bottom:1px}
+  /* Content */
+  .tab-content{padding:14px 12px}
+  .section-title{font-size:1.1rem;letter-spacing:1px}
+  .section-desc{font-size:.75rem;margin-bottom:14px}
+  .sub-title{font-size:.85rem;margin:16px 0 8px}
+  /* Forms */
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .form-group{margin-bottom:12px}
+  .form-group label{font-size:.7rem}
+  input[type="text"],input[type="number"],input[type="date"],select,textarea{padding:9px 10px;font-size:.82rem}
+  /* Checkboxes */
+  .checkbox-grid{grid-template-columns:1fr}
+  .checkbox-item{padding:7px 9px}
+  .checkbox-item span{font-size:.76rem}
+  /* Radios */
+  .radio-item{padding:10px 11px}
+  .radio-info .radio-label{font-size:.82rem}
+  .radio-info .radio-desc{font-size:.7rem}
+  /* Buttons */
+  .btn{padding:11px 18px;font-size:.8rem;letter-spacing:1.5px;width:100%}
+  .btn-row{flex-direction:column}
+  .btn-secondary{width:100%}
+  /* Plan */
+  .plan-summary{grid-template-columns:repeat(2,1fr);gap:6px}
+  .summary-card{padding:10px}
+  .summary-card .val{font-size:1.15rem}
+  .summary-card .lbl{font-size:.58rem}
+  .paces-grid{grid-template-columns:repeat(2,1fr);gap:6px}
+  .pace-card{padding:8px}
+  .pace-card .pp{font-size:.72rem}
+  .pace-card .pv{font-size:.82rem}
+  .day-row{grid-template-columns:55px 1fr 45px;gap:4px;padding:7px 8px;font-size:.72rem}
+  .day-name{font-size:.65rem}
+  .day-content .st{font-size:.62rem}
+  .day-km{font-size:.68rem}
+  .week-header{padding:9px 10px}
+  .week-header h3{font-size:.78rem}
+  /* Dispo */
+  .day-constraint{grid-template-columns:70px 1fr;gap:6px;padding:5px 0}
+  .day-constraint label{font-size:.7rem}
+  .day-constraint select{font-size:.73rem;padding:6px 8px}
+  /* Food chips */
+  .food-grid{gap:5px}
+  .food-chip{padding:5px 9px;font-size:.7rem;border-radius:16px}
+  .food-score{padding:12px}
+  .food-tip{font-size:.73rem;padding:7px 10px}
+  /* Simulator */
+  .sim-result{padding:14px}
+  .sim-row{grid-template-columns:90px 1fr 65px;gap:6px;font-size:.76rem}
+  .sim-dist{font-size:.72rem}
+  .sim-time{font-size:.85rem}
+  .sim-pace{font-size:.7rem}
+  .sim-factors{grid-template-columns:repeat(2,1fr);gap:6px}
+  .sim-factor{padding:8px}
+  .sim-factor .sf-val{font-size:.95rem}
+  .sim-factor .sf-lbl{font-size:.65rem}
+  /* Glossary */
+  .glossary-item{padding:11px 12px}
+  .glossary-term{font-size:.85rem}
+  .glossary-def{font-size:.75rem}
+  .glossary-example{font-size:.68rem}
+  /* Nutrition tab */
+  .nutri-card{padding:12px}
+  .nutri-card h4{font-size:.8rem}
+  .nutri-card p,.nutri-card li{font-size:.75rem}
+  .nutri-table{font-size:.68rem}
+  .nutri-table th,.nutri-table td{padding:5px 6px}
+  .nutri-hl{font-size:.73rem;padding:8px 10px}
+  /* Generate */
+  .generate-section{padding:24px 14px}
+  .generate-section p{font-size:.75rem}
+  /* Footer */
+  .app-footer{padding:18px 12px}
+  .app-footer p{font-size:.58rem}
+  /* Notif */
+  .notif{top:auto;bottom:16px;right:12px;left:12px;text-align:center;font-size:.78rem}
+}
+/* ========== VERY SMALL (iPhone SE etc) ========== */
+@media(max-width:380px){
+  .tab-btn{min-width:48px;padding:7px 3px;font-size:.48rem}
+  .tab-icon{font-size:.75rem}
+  .brand-text h1{font-size:.82rem}
+  .logo-svg{width:28px;height:28px}
+  .section-title{font-size:.95rem}
+  .day-row{grid-template-columns:45px 1fr 38px}
+  .sim-row{grid-template-columns:75px 1fr 55px}
+  .plan-summary{grid-template-columns:repeat(2,1fr)}
+  .summary-card .val{font-size:1rem}
+  .paces-grid{grid-template-columns:repeat(2,1fr)}
+  .sim-factors{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="logo-area">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 15 L30 45 L15 35 L5 55" fill="none" stroke="#C9723E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M50 15 L70 45 L85 35 L95 55" fill="none" stroke="#C9723E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5 70 L15 65 L22 72 L30 60 L38 75 L45 62 L50 70 L55 62 L62 75 L70 60 L78 72 L85 65 L95 70" fill="none" stroke="#C9723E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="brand-text"><h1>Coach Running</h1><div class="tagline">Run free. Run wild.</div></div>
+  </div>
+  <span class="header-sub">by Run On The Wild Side</span>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('course')"><span class="tab-icon">🏔️</span>Course</button>
+  <button class="tab-btn" onclick="switchTab('profil')"><span class="tab-icon">🏃</span>Profil</button>
+  <button class="tab-btn" onclick="switchTab('dispo')"><span class="tab-icon">📅</span>Dispo</button>
+  <button class="tab-btn" onclick="switchTab('sante')"><span class="tab-icon">❤️</span>Santé</button>
+  <button class="tab-btn" onclick="switchTab('type-plan')"><span class="tab-icon">📋</span>Plan</button>
+  <button class="tab-btn" onclick="switchTab('nutrition')"><span class="tab-icon">🍌</span>Nutri</button>
+  <button class="tab-btn" onclick="switchTab('bilan-nutri')"><span class="tab-icon">🥗</span>Bilan</button>
+  <button class="tab-btn" onclick="switchTab('simulateur')"><span class="tab-icon">🎯</span>Simul.</button>
+  <button class="tab-btn" onclick="switchTab('glossaire')"><span class="tab-icon">📖</span>Glossaire</button>
+  <button class="tab-btn" onclick="switchTab('plan')"><span class="tab-icon">⚡</span>Mon plan</button>
+</nav>
+
+<!-- TAB COURSE -->
+<div id="tab-course" class="tab-content active">
+  <h2 class="section-title">Ta course</h2>
+  <p class="section-desc">Définis l'objectif qui guidera ton plan d'entraînement.</p>
+  <div class="form-group"><label>Type de course</label>
+    <select id="courseType"><option value="">— Sélectionne —</option><option value="route">Course sur route</option><option value="trail-court">Trail court (&lt; 40 km)</option><option value="trail-long">Trail long (≥ 40 km)</option><option value="cross">Cross-country</option><option value="piste">Piste</option><option value="obstacles">Course à obstacles</option></select>
+  </div>
+  <div class="form-group"><label>Distance</label>
+    <div class="form-row">
+      <select id="courseDistPreset" onchange="if(this.value)document.getElementById('courseDistCustom').value=''"><option value="">Distance usuelle…</option><option value="5">5 km</option><option value="10">10 km</option><option value="21.1">Semi-marathon</option><option value="42.195">Marathon</option></select>
+      <input type="number" id="courseDistCustom" placeholder="Ou distance libre (km)" step="0.1" min="1" oninput="if(this.value)document.getElementById('courseDistPreset').value=''">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group"><label>Date de la course</label><input type="date" id="courseDate"></div>
+    <div class="form-group"><label>Objectif chrono <span class="opt">(optionnel)</span></label><input type="text" id="courseObj" placeholder="ex: 1h45, 3h30…"></div>
+  </div>
+</div>
+
+<!-- TAB PROFIL -->
+<div id="tab-profil" class="tab-content">
+  <h2 class="section-title">Ton profil</h2>
+  <p class="section-desc">Plus tu détailles, plus le plan sera précis et adapté à toi.</p>
+
+  <h3 class="sub-title">👤 Caractéristiques personnelles</h3>
+  <div class="form-row-3">
+    <div class="form-group"><label>Âge <span class="opt">(optionnel)</span></label><input type="number" id="age" placeholder="ex: 42" min="10" max="99"></div>
+    <div class="form-group"><label>Poids (kg) <span class="opt">(optionnel)</span></label><input type="number" id="poids" placeholder="ex: 75" min="30" max="200" step="0.5"></div>
+    <div class="form-group"><label>Sexe <span class="opt">(optionnel)</span></label><select id="sexe"><option value="">—</option><option value="H">Homme</option><option value="F">Femme</option></select></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group"><label>Années de pratique course <span class="opt">(optionnel)</span></label><input type="number" id="anneesPratique" placeholder="ex: 5" min="0" max="60"></div>
+    <div class="form-group"><label>Fumeur ?</label><select id="fumeur"><option value="non">Non</option><option value="oui">Oui</option><option value="ex">Ex-fumeur</option></select></div>
+  </div>
+
+  <h3 class="sub-title">🏆 Records personnels <span class="opt">(optionnel)</span></h3>
+  <div class="form-row">
+    <div class="form-group"><label>Record 5 km</label><input type="text" id="record5" placeholder="ex: 22:30"></div>
+    <div class="form-group"><label>Record 10 km</label><input type="text" id="record10" placeholder="ex: 47:00"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group"><label>Record Semi-marathon</label><input type="text" id="recordSemi" placeholder="ex: 1:45:00"></div>
+    <div class="form-group"><label>Record Marathon</label><input type="text" id="recordMarathon" placeholder="ex: 3:50:00"></div>
+  </div>
+
+  <h3 class="sub-title">👟 Chaussures</h3>
+  <div class="form-row">
+    <div class="form-group"><label>Type principal</label>
+      <select id="shoeType"><option value="route">Route classique</option><option value="carbone">Semelles carbone (compétition)</option><option value="tempo">Tempo / dynamique</option><option value="trail">Trail</option><option value="chemin">Chemin / mixte</option><option value="minimaliste">Minimaliste</option><option value="maximaliste">Maximaliste (Hoka, etc.)</option></select>
+    </div>
+    <div class="form-group"><label>Marque / Modèle <span class="opt">(optionnel)</span></label><input type="text" id="shoeBrand" placeholder="ex: Nike Vaporfly, Hoka Mach 6…"></div>
+  </div>
+  <div id="carbonInfo" style="display:none;padding:10px 14px;background:var(--cuivre-glow);border:1px solid var(--border-subtle);border-radius:5px;margin-bottom:16px;font-size:.78rem;color:var(--cuivre-clair);">
+    ⚡ <strong>Info carbone :</strong> Les études montrent un gain d'économie de course de 2-4%, mais principalement au-delà de 14-15 km/h. En dessous de cette allure, le bénéfice est limité voire nul. Réservez-les à la compétition et aux séances d'allure rapide — variez avec des chaussures classiques pour préserver la force intrinsèque de vos pieds.
+  </div>
+
+  <h3 class="sub-title">🏃 Entraînement running</h3>
+  <div class="form-row">
+    <div class="form-group"><label>Séances / semaine</label>
+      <select id="runSessions">
+        <option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Volume hebdo (km)</label><input type="number" id="runVolume" placeholder="ex: 40" min="5" max="300"></div>
+  </div>
+
+  <h3 class="sub-title">🚴 Vélo <span class="opt">(optionnel)</span></h3>
+  <div class="form-row">
+    <div class="form-group"><label>Séances / semaine</label>
+      <select id="bikeSessions">
+        <option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Volume hebdo (km) <span class="opt">(optionnel)</span></label><input type="number" id="bikeVolume" placeholder="ex: 80" min="0"></div>
+  </div>
+
+  <h3 class="sub-title">💪 Renforcement musculaire <span class="opt">(optionnel)</span></h3>
+  <div class="form-row">
+    <div class="form-group"><label>Séances / semaine</label>
+      <select id="renfoSessions"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select>
+    </div>
+    <div class="form-group"><label>Type de renfo</label>
+      <select id="renfoType"><option value="general">Gainage / PPG</option><option value="musculation">Musculation</option><option value="yoga">Yoga / Pilates</option><option value="crossfit">CrossFit / Fonctionnel</option></select>
+    </div>
+  </div>
+
+  <h3 class="sub-title">⚡ VMA</h3>
+  <div class="form-group"><label>Tu connais ta VMA ?</label>
+    <div class="form-row">
+      <select id="vmaMode" onchange="toggleVmaMode()"><option value="known">Oui</option><option value="estimate">Non, l'estimer</option></select>
+      <input type="number" id="vmaValue" placeholder="VMA en km/h" step="0.1" min="8" max="25">
+    </div>
+  </div>
+  <div id="vmaEstimate" style="display:none">
+    <div class="form-row">
+      <div class="form-group"><label>Distance de référence</label><select id="refDistance"><option value="5">5 km</option><option value="10" selected>10 km</option></select></div>
+      <div class="form-group"><label>Temps (mm:ss)</label><input type="text" id="refTime" placeholder="ex: 37:00" oninput="estimateVMA()"></div>
+    </div>
+    <div id="vmaResult" style="display:none;padding:10px 12px;background:var(--cuivre-glow);border:1px solid var(--border-subtle);border-radius:5px;margin-top:6px"></div>
+  </div>
+</div>
+
+<!-- TAB DISPO -->
+<div id="tab-dispo" class="tab-content">
+  <h2 class="section-title">Disponibilités</h2>
+  <p class="section-desc">Indique les jours où tu ne peux pas t'entraîner. Le plan s'adaptera automatiquement à ton emploi du temps.</p>
+  <div id="dispoGrid"></div>
+</div>
+
+<!-- TAB SANTÉ -->
+<div id="tab-sante" class="tab-content">
+  <h2 class="section-title">Santé</h2>
+  <p class="section-desc">Signale toute condition physique pour que le plan s'adapte.</p>
+  <div class="form-group"><label>Pathologies connues <span class="opt">(sélection multiple)</span></label>
+    <div class="checkbox-grid">
+      <label class="checkbox-item"><input type="checkbox" value="tendinite"><span>Tendinite</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="rotule"><span>Problème rotule</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="perioste"><span>Périostite</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="fascia"><span>Aponévrosite</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="lombalgie"><span>Lombalgie</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="cheville"><span>Problème cheville</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="cardiaque"><span>Cardiaque</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="asthme"><span>Asthme</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="reprise"><span>Reprise long arrêt</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="hernie"><span>Hernie discale</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="genou"><span>Syndrome rotulien</span></label>
+      <label class="checkbox-item"><input type="checkbox" value="it-band"><span>Essuie-glace</span></label>
+    </div>
+  </div>
+  <div class="form-group"><label>Autres précisions <span class="opt">(optionnel)</span></label><textarea id="healthNotes" placeholder="Décris ici toute info complémentaire…"></textarea></div>
+</div>
+
+<!-- TAB TYPE DE PLAN -->
+<div id="tab-type-plan" class="tab-content">
+  <h2 class="section-title">Type de plan</h2>
+  <p class="section-desc">Choisis la philosophie d'entraînement qui te correspond.</p>
+  <div class="radio-grid">
+    <label class="radio-item" onclick="selectPlan(this)"><input type="radio" name="planType" value="ffa"><div class="radio-info"><div class="radio-label">FFA — Périodisation classique</div><div class="radio-desc">Cycles structurés : développement, spécifique, affûtage. Pour coureurs expérimentés.</div></div></label>
+    <label class="radio-item selected" onclick="selectPlan(this)"><input type="radio" name="planType" value="80-20" checked><div class="radio-info"><div class="radio-label">80/20 — Polarisé</div><div class="radio-desc">80% EF, 20% intensité. Validé scientifiquement, excellent ratio progression/récupération.</div></div></label>
+    <label class="radio-item" onclick="selectPlan(this)"><input type="radio" name="planType" value="lydiard"><div class="radio-info"><div class="radio-label">Lydiard — Base aérobie</div><div class="radio-desc">Base aérobie massive avant la vitesse. Pour longues distances.</div></div></label>
+    <label class="radio-item" onclick="selectPlan(this)"><input type="radio" name="planType" value="hit"><div class="radio-info"><div class="radio-label">HIT — Haute intensité</div><div class="radio-desc">Intervalles intenses, volume réduit. Pour ceux qui ont peu de temps.</div></div></label>
+    <label class="radio-item" onclick="selectPlan(this)"><input type="radio" name="planType" value="progressif"><div class="radio-info"><div class="radio-label">Progressif doux — Reprise / Débutant</div><div class="radio-desc">Progression graduelle, alternance marche-course. Priorité plaisir et régularité.</div></div></label>
+  </div>
+</div>
+
+<!-- TAB NUTRITION -->
+<div id="tab-nutrition" class="tab-content">
+  <h2 class="section-title">Nutrition</h2>
+  <p class="section-desc">L'alimentation peut faire perdre un marathon. Voici les clés nutritionnelles du coureur.</p>
+  <div class="nutri-section"><h3 class="sub-title">💧 Hydratation</h3><div class="nutri-card"><h4>Au quotidien</h4><p>Calcul : <strong>35 ml × poids (kg)</strong>. Ex : 75 kg = 2,6 L/jour hors entraînement.</p></div><div class="nutri-card"><h4>Pendant l'effort</h4><p>500-800 ml/h. Boire toutes les 15-20 min dès le début de l'effort. 1% de perte de poids = 10% de capacité en moins.</p></div><div class="nutri-card"><h4>Après l'effort</h4><p>1,5× le poids perdu dans les 2-4h suivantes. Pesez-vous avant/après.</p></div></div>
+  <div class="nutri-section"><h3 class="sub-title">📅 Semaine pré-compétition</h3><div class="nutri-card"><h4>Régime dissocié scandinave adapté</h4><table class="nutri-table"><tr><th>Jour</th><th>Alimentation</th></tr><tr><td>J-7 à J-5</td><td>Favoriser protéines + graisses végétales, réduire féculents</td></tr><tr><td>J-4 à J-2</td><td>Glucides ++ : pâtes, riz, pain, pommes de terre</td></tr><tr><td>J-1</td><td>Glucides + pauvre en résidus (fibres limitées)</td></tr></table></div></div>
+  <div class="nutri-section"><h3 class="sub-title">🏁 Jour de course</h3><div class="nutri-card"><h4>Pendant l'effort — les 3 piliers</h4><table class="nutri-table"><tr><th>Eau</th><th>Glucides</th><th>Sodium</th></tr><tr><td>500-800 ml/h</td><td>30-60g/h (gel, gommes, compote)</td><td>1-3g sel/h</td></tr></table><div class="nutri-hl">Règle d'or : ne JAMAIS tester un aliment ou gel pour la première fois le jour J.</div></div></div>
+  <div class="nutri-section"><h3 class="sub-title">🔄 Récupération</h3><div class="nutri-card"><h4>Fenêtre 0-30 min</h4><p>Eau bicarbonatée + lait chocolaté ou yaourt + fruits secs. Puis repas complet dans les 2h.</p></div></div>
+</div>
+
+<!-- TAB BILAN NUTRI -->
+<div id="tab-bilan-nutri" class="tab-content">
+  <h2 class="section-title">Bilan nutritionnel</h2>
+  <p class="section-desc">Dis-nous ce que tu manges typiquement. On analysera l'adéquation avec tes besoins de coureur et on te donnera des conseils ciblés.</p>
+
+  <div class="food-meal"><h3 class="sub-title">🌅 Petit-déjeuner</h3><div class="food-grid" id="food-pdj"></div></div>
+  <div class="food-meal"><h3 class="sub-title">🍎 Collation matin <span class="opt">(optionnel)</span></h3><div class="food-grid" id="food-colmatin"></div></div>
+  <div class="food-meal"><h3 class="sub-title">☀️ Déjeuner</h3><div class="food-grid" id="food-dej"></div></div>
+  <div class="food-meal"><h3 class="sub-title">🍌 Collation après-midi <span class="opt">(optionnel)</span></h3><div class="food-grid" id="food-colapm"></div></div>
+  <div class="food-meal"><h3 class="sub-title">🌙 Dîner</h3><div class="food-grid" id="food-diner"></div></div>
+
+  <div class="btn-row"><button class="btn btn-primary" onclick="analyzeDiet()">🔍 Analyser mon alimentation</button></div>
+  <div id="dietResult" style="display:none"></div>
+</div>
+
+<!-- TAB SIMULATEUR -->
+<div id="tab-simulateur" class="tab-content">
+  <h2 class="section-title">Simulateur de performance</h2>
+  <p class="section-desc">Estime tes temps possibles sur différentes distances à partir de ta VMA, tes records, ton profil et ton expérience. Basé sur les modèles de Riegel, Mercier et Cameron.</p>
+
+  <div class="btn-row" style="margin-bottom:0"><button class="btn btn-primary" onclick="runSimulator()">🎯 Simuler mes performances</button></div>
+  <div id="simResult" style="display:none"></div>
+</div>
+
+<!-- TAB GLOSSAIRE -->
+<div id="tab-glossaire" class="tab-content">
+  <h2 class="section-title">Glossaire running</h2>
+  <p class="section-desc">Toutes les définitions pour comprendre ton plan.</p>
+  <div class="form-group"><input type="text" id="glossarySearch" placeholder="Rechercher un terme…" oninput="filterGlossary()"></div>
+  <div id="glossaryList"></div>
+</div>
+
+<!-- TAB MON PLAN -->
+<div id="tab-plan" class="tab-content">
+  <h2 class="section-title">Mon plan d'entraînement</h2>
+  <p class="section-desc">Génère ton plan personnalisé.</p>
+  <div class="generate-section" id="genSec">
+    <p>Remplis les onglets puis clique pour générer.</p>
+    <button class="btn btn-primary" onclick="generatePlan()">⚡ Générer mon plan</button>
+  </div>
+  <div id="planOutput" style="display:none">
+    <div id="printProfile"></div>
+    <div class="plan-summary" id="planSummary"></div>
+    <h3 class="sub-title">Allures (min/km)</h3>
+    <div class="paces-grid" id="pacesGrid"></div>
+    <h3 class="sub-title" style="margin-top:24px">Programme semaine par semaine</h3>
+    <div id="weeksContainer"></div>
+    <div class="btn-row" style="justify-content:center;margin-top:24px">
+      <button class="btn btn-secondary" onclick="exportCSV()">📄 CSV</button>
+      <button class="btn btn-secondary" onclick="window.print()">🖨️ Imprimer A3</button>
+    </div>
+  </div>
+</div>
+
+<footer class="app-footer"><p><span class="fb">Run On The Wild Side</span> — Coach Running — Run free. Run wild.</p><p style="margin-top:4px">Créé par Loïc Queudrue</p></footer>
+
+<script>
+// GLOSSARY
+const G=[
+{t:"VMA",a:"Vitesse Maximale Aérobie",d:"Vitesse maximale soutenue 4-8 min, correspondant à la VO2max. Les allures se calculent en % de VMA.",e:"VMA 15 km/h → 400m en 1'36\" (100%)."},
+{t:"VO2max",a:"",d:"Volume max d'O2 consommé par minute. La VMA en est la traduction en vitesse.",e:"55 ml/min/kg ≈ VMA 15-16 km/h."},
+{t:"Endurance Fondamentale",a:"EF",d:"Allure lente (60-70% VMA) permettant de parler sans essoufflement. Base de tout entraînement. Échauffements, récup, sorties longues.",e:"VMA 16 → EF à 5'30\"-6'00\"/km."},
+{t:"Endurance Active",a:"EA",d:"70-75% VMA. Conversation possible mais moins aisée. Sorties moyennes.",e:"VMA 16 → EA à 5'00\"-5'20\"/km."},
+{t:"Seuil Anaérobie",a:"Seuil / SV2",d:"80-90% VMA. Allure de compétition 10 km+. Au-delà, l'acide lactique s'accumule. Travaillé dans les 2 derniers mois.",e:"2×3000m ou 3×8' à allure seuil, récup 3' trot."},
+{t:"Fractionné",a:"Interval Training",d:"Alternance effort intense / récupération. VMA, seuil ou allure spécifique. 200m à 3000m.",e:"10×400m récup 1' ou 8×300m récup 50\"."},
+{t:"Fartlek",a:"Jeu de vitesse",d:"Variations d'allure libres pendant un footing. Plus ludique que le fractionné classique.",e:"6-8 accélérations de 30s-1min pendant un footing de 45'."},
+{t:"Sortie Longue",a:"SL",d:"Sortie en endurance > 1h. Développe l'endurance aérobie, habitue à puiser dans les graisses.",e:"Semi → 1h15-1h30. Marathon → 1h30-2h."},
+{t:"Allure Spécifique",a:"AS",d:"Vitesse visée en compétition. Se travaille les 2 derniers mois.",e:"Objectif 45' sur 10 km → AS = 4'30\"/km."},
+{t:"FCM",a:"Fréquence Cardiaque Maximale",d:"Max de battements/min à l'effort maximal. Zones d'entraînement en % FCM. Estimation : 220 - âge (approximatif).",e:"40 ans → FCM théorique 180 bpm. EF à 117-135 bpm."},
+{t:"PPG",a:"Préparation Physique Générale",d:"Renforcement musculaire ciblé : gainage, proprioception, chaîne postérieure. 2-3×/semaine. Stopper 5 jours avant course.",e:"Gainage 30\"-1' front/côtés/arrière + crunchs."},
+{t:"Éducatifs",a:"Gammes",d:"Exercices techniques avant séance rapide : talons-fesses, montées de genoux, jambes tendues (3×15\").",e:"Échauffement = 20' footing + éducatifs + 3 lignes droites."},
+{t:"Lignes droites",a:"LD",d:"Accélérations progressives sur 80-100m en fin d'échauffement. Activent les fibres rapides.",e:"3×100m en accélération, retour en marchant."},
+{t:"Retour au calme",a:"RAC",d:"Footing très lent 5-10 min après séance rapide. Favorise l'élimination des déchets.",e:"Après VMA : 5-10' de trot très lent."},
+{t:"Semaine de récupération",a:"Décharge",d:"Semaine allégée (~70% du volume) toutes les 3-4 semaines. Évite le surentraînement.",e:"40 km/sem habituel → 25-28 km en décharge."},
+{t:"Affûtage",a:"Taper",d:"Réduction du volume 1-3 semaines avant l'objectif. Quelques rappels de vitesse, volume réduit.",e:"Dernière semaine : 1/3 à 1/2 du volume. Dernière grosse séance à J-10."},
+{t:"Glycogène",a:"",d:"Stockage du glucose dans les muscles (350-400g) et le foie (100g). Carburant principal du marathonien.",e:"Le « mur du marathon » au 30e km = épuisement du glycogène."},
+{t:"Le Mur",a:"",d:"Moment redouté du marathon (~30e km) où les réserves de glycogène sont épuisées. Chute brutale de performance.",e:"Le régime dissocié scandinave vise à repousser ce mur."},
+{t:"Allure / Pace",a:"",d:"Vitesse en min/km (temps pour parcourir 1 km). Plus c'est bas, plus on va vite.",e:"10 km en 50 min = 5'00\"/km = 12 km/h."},
+{t:"D+ / D-",a:"Dénivelé",d:"Cumul des mètres gagnés (D+) ou perdus (D-). Critère majeur en trail.",e:"Trail 40 km / 2000m D+ = exigeant."},
+{t:"Polarisé (80/20)",a:"",d:"80% en EF, 20% en haute intensité. Allures intermédiaires évitées. Validé par la recherche.",e:"Sur 5 séances : 4 faciles + 1 intense."},
+{t:"Périodisation",a:"",d:"Organisation en phases : développement, spécifique, pré-compétition, affûtage.",e:"Nov-Déc: VMA / Jan-Mar: seuil / Avr: affûtage."},
+{t:"Test d'effort",a:"",d:"Examen médical pour mesurer VMA, FCM et détecter des problèmes. Recommandé pour vétérans.",e:"Test sur tapis : vitesses croissantes jusqu'à l'épuisement."},
+{t:"Aérobie",a:"",d:"Muscles utilisent l'O2 comme carburant. Allures faibles à modérées (65-80% VMA). Confort respiratoire.",e:"Tout footing en EF est aérobie."},
+{t:"Anaérobie",a:"",d:"Intensité > capacités d'oxygénation (90-105% VMA). Glycogène = carburant, acide lactique produit.",e:"Les séances VMA sont anaérobies."},
+{t:"Bigorexie",a:"",d:"Dépendance excessive au sport (OMS). 15% des sportifs > 10h/semaine concernés.",e:"Organiser sa vie uniquement autour des courses = signal d'alerte."},
+];
+function renderGlossary(f=''){const l=document.getElementById('glossaryList');const fl=G.filter(g=>{const s=f.toLowerCase();return g.t.toLowerCase().includes(s)||g.a.toLowerCase().includes(s)||g.d.toLowerCase().includes(s)});l.innerHTML=fl.map(g=>`<div class="glossary-item"><span class="glossary-term">${g.t}</span>${g.a?`<span class="glossary-abbr">(${g.a})</span>`:''}<div class="glossary-def">${g.d}</div>${g.e?`<div class="glossary-example">${g.e}</div>`:''}</div>`).join('')}
+function filterGlossary(){renderGlossary(document.getElementById('glossarySearch').value)}
+
+// DISPO GRID
+function buildDispoGrid(){
+  const days=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+  const c=document.getElementById('dispoGrid');
+  c.innerHTML=days.map((d,i)=>`
+    <div class="day-constraint">
+      <label>${d}</label>
+      <select id="dispo_${i}" onchange="toggleReason(${i})">
+        <option value="ok">✅ Disponible</option>
+        <option value="ko">❌ Indisponible</option>
+        <option value="matin">🌅 Matin seulement</option>
+        <option value="soir">🌙 Soir seulement</option>
+        <option value="midi">☀️ Midi seulement</option>
+      </select>
+    </div>
+    <div id="reason_${i}" style="display:none;padding-left:108px;margin-bottom:8px">
+      <input type="text" class="constraint-reason" id="reasonText_${i}" placeholder="Raison (ex: déplacement pro, enfants…)">
+    </div>
+  `).join('');
+}
+function toggleReason(i){
+  const v=document.getElementById('dispo_'+i).value;
+  document.getElementById('reason_'+i).style.display=(v!=='ok')?'block':'none';
+}
+function getAvailableDays(){
+  const r=[];
+  for(let i=0;i<7;i++){const v=document.getElementById('dispo_'+i).value;if(v!=='ko')r.push(i)}
+  return r;
+}
+
+// TABS
+const tabIds=['course','profil','dispo','sante','type-plan','nutrition','bilan-nutri','simulateur','glossaire','plan'];
+function switchTab(t){document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');const i=tabIds.indexOf(t);if(i>=0)document.querySelectorAll('.tab-btn')[i].classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+
+// VMA
+function toggleVmaMode(){const m=document.getElementById('vmaMode').value;document.getElementById('vmaEstimate').style.display=m==='estimate'?'block':'none';document.getElementById('vmaValue').style.display=m==='known'?'block':'none'}
+function estimateVMA(){const d=parseFloat(document.getElementById('refDistance').value);const ts=document.getElementById('refTime').value.trim();if(!ts)return;const p=ts.split(':');if(p.length!==2)return;const mm=parseInt(p[0]),ss=parseInt(p[1]);if(isNaN(mm)||isNaN(ss))return;const tm=mm+ss/60;let v;if(d===5)v=(5/(tm/60))/0.93;else v=(10/(tm/60))/0.88;v=Math.round(v*10)/10;document.getElementById('vmaResult').style.display='block';document.getElementById('vmaResult').innerHTML=`<span style="font-family:'Oswald';color:var(--cuivre);font-size:1rem;font-weight:600">VMA estimée : ${v} km/h</span><br><span style="font-size:.73rem;color:var(--text-muted)">Basé sur ${d} km en ${mm}min${ss.toString().padStart(2,'0')}s</span>`;document.getElementById('vmaValue').value=v}
+function selectPlan(el){document.querySelectorAll('.radio-item').forEach(r=>r.classList.remove('selected'));el.classList.add('selected');el.querySelector('input').checked=true}
+function notify(m){const n=document.createElement('div');n.className='notif';n.textContent=m;document.body.appendChild(n);setTimeout(()=>n.remove(),3000)}
+function getVMA(){const m=document.getElementById('vmaMode').value;if(m==='known')return parseFloat(document.getElementById('vmaValue').value)||0;estimateVMA();return parseFloat(document.getElementById('vmaValue').value)||0}
+function vmaToPace(v,p){const s=v*p;if(s<=0)return'--:--';const mpk=60/s;const m=Math.floor(mpk),sec=Math.round((mpk-m)*60);return`${m}'${sec.toString().padStart(2,'0')}"`}
+function vmaToSpeed(v,p){return Math.round(v*p*10)/10}
+
+// SHOE INFO
+document.getElementById('shoeType').addEventListener('change',function(){document.getElementById('carbonInfo').style.display=this.value==='carbone'?'block':'none'});
+
+// GENERATE
+function generatePlan(){
+  const cType=document.getElementById('courseType').value;
+  const dist=parseFloat(document.getElementById('courseDistCustom').value||document.getElementById('courseDistPreset').value);
+  const cDate=document.getElementById('courseDate').value;
+  const rS=parseInt(document.getElementById('runSessions').value);
+  const rV=parseInt(document.getElementById('runVolume').value)||30;
+  const bS=parseInt(document.getElementById('bikeSessions').value);
+  const reS=parseInt(document.getElementById('renfoSessions').value);
+  const pt=document.querySelector('input[name="planType"]:checked')?.value||'80-20';
+  const vma=getVMA();
+  if(!cType){notify('Sélectionne un type de course !');switchTab('course');return}
+  if(!dist||dist<=0){notify('Indique une distance !');switchTab('course');return}
+  if(!cDate){notify('Indique la date !');switchTab('course');return}
+  if(!vma||vma<8){notify('Renseigne ta VMA !');switchTab('profil');return}
+  const today=new Date();today.setHours(0,0,0,0);const race=new Date(cDate);
+  const tw=Math.floor((race-today)/(7*864e5));
+  if(tw<3){notify('Min 3 semaines avant la course !');return}
+  if(tw>30){notify('Max 30 semaines.');return}
+  const avail=getAvailableDays();
+  if(avail.length<2){notify('Il faut au moins 2 jours disponibles !');switchTab('dispo');return}
+  const health=[];document.querySelectorAll('#tab-sante input[type="checkbox"]:checked').forEach(c=>health.push(c.value));
+  const isReprise=health.includes('reprise');
+  const isFumeur=document.getElementById('fumeur').value==='oui';
+  const age=parseInt(document.getElementById('age').value)||0;
+  const weeks=[];
+  const tpW=dist>=42?3:dist>=21?2:1;
+  const bW=tw-tpW;
+  const bVol=isReprise?Math.min(rV*.6,20):rV*.7;
+  const pVol=isReprise?rV:rV*1.2;
+  // Adjust for smoker/age
+  const ageFactor=age>50?0.92:age>60?0.85:1;
+  const smokeFactor=isFumeur?0.9:1;
+
+  for(let w=1;w<=tw;w++){
+    const isRec=w%4===0&&w<tw-tpW;const isTp=w>tw-tpW;const isRW=w===tw;
+    let wt;
+    if(isRW)wt=bVol*.4;else if(isTp){const ti=w-(tw-tpW);wt=pVol*(1-ti*.2)}else if(isRec)wt=(bVol+(pVol-bVol)*Math.min(w/bW,1))*.7;else wt=bVol+(pVol-bVol)*Math.min(w/bW,1);
+    wt=Math.round(wt*ageFactor*smokeFactor);
+    let phase;if(isRW)phase='COURSE';else if(isTp)phase='AFFÛTAGE';else if(isRec)phase='RÉCUPÉRATION';else if(w<=bW*.4)phase='DÉVELOPPEMENT';else if(w<=bW*.7)phase='SPÉCIFIQUE';else phase='PRÉ-COMPÉTITION';
+    const sess=buildWeek(w,tw,rS,bS,reS,wt,vma,dist,pt,phase,isRW,cType,avail);
+    weeks.push({num:w,phase,days:sess.days,totalKm:sess.totalKm,isRec,isTp,isRW});
+  }
+  displayPlan(weeks,vma,dist,cType,tw,pt);
+}
+
+function buildWeek(wn,tw,rS,bS,reS,wkKm,vma,dist,pt,phase,isRW,cType,avail){
+  const dn=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+  const res=[];let tk=0;
+  // Distribute run sessions across available days
+  const runDays=pickDays(Math.min(rS,avail.length),avail);
+  const remaining=avail.filter(d=>!runDays.includes(d));
+  const bikeDays=pickDays(Math.min(bS,remaining.length),remaining);
+  const remAfterBike=avail.filter(d=>!bikeDays.includes(d));
+  const renfoDays=pickDays(Math.min(reS,remAfterBike.length),remAfterBike);
+
+  for(let d=0;d<7;d++){
+    let c='',km=0,st='';
+    if(isRW&&d===6){c=`🏔️ JOUR DE COURSE ! ${dist} km`;km=dist;st='COURSE'}
+    else if(isRW&&d>=4){c='Repos — Préparation mentale';st='REPOS'}
+    else if(runDays.includes(d)){
+      const si=runDays.indexOf(d);const s=getRS(si,runDays.length,wkKm,vma,dist,pt,phase,cType);
+      c=s.desc;km=s.km;st=s.type;
+    }
+    if(bikeDays.includes(d)&&!isRW){if(c)c+='\n';c+='🚴 Vélo : sortie 45-60min';st=st||'VÉLO'}
+    if(renfoDays.includes(d)&&!isRW){if(c)c+='\n';c+='💪 Renfo : gainage, squats, fentes (30-40min)';st=st||'RENFO'}
+    if(!c){c='Repos';st='REPOS'}
+    tk+=km;res.push({day:dn[d],content:c,km,sessionType:st});
+  }
+  return{days:res,totalKm:Math.round(tk)};
+}
+
+function pickDays(n,pool){
+  if(n<=0||pool.length===0)return[];
+  // Spread sessions evenly
+  const sorted=[...pool].sort((a,b)=>a-b);
+  if(n>=sorted.length)return sorted;
+  const step=sorted.length/n;const r=[];
+  for(let i=0;i<n;i++)r.push(sorted[Math.round(i*step)]);
+  return r;
+}
+
+function getRS(si,ts,wkKm,vma,dist,pt,phase,ct){
+  const avg=wkKm/ts;
+  const efP=vmaToPace(vma,.65),svP=vmaToPace(vma,.75),smP=vmaToPace(vma,.80),vmaP=vmaToPace(vma,1);
+  const isT=ct.includes('trail');
+  const T={
+    'DÉVELOPPEMENT':[
+      {t:'EF',d:`🏃 EF — ${Math.round(avg*1.2)} km à ${efP}/km`,k:1.2},
+      {t:'FARTLEK',d:`🔥 Fartlek — ${Math.round(avg)} km, 6-8 accélérations 30s-1min`,k:1},
+      {t:'SL',d:`🏔️ Sortie longue — ${Math.round(avg*1.6)} km à ${efP}/km`,k:1.6},
+      {t:'EF',d:`🏃 Footing souple — ${Math.round(avg*.8)} km à ${efP}/km`,k:.8},
+      {t:'CÔTES',d:`⛰️ Côtes — 8×30s côte + retour calme. ~${Math.round(avg*.7)} km`,k:.7},
+      {t:'EF',d:`🏃 EF + gammes — ${Math.round(avg)} km`,k:1},
+      {t:'FARTLEK',d:`🔥 Fartlek libre — ${Math.round(avg*.9)} km, variations au feeling`,k:.9},
+      {t:'EF',d:`🏃 Footing récup — ${Math.round(avg*.6)} km très lent`,k:.6},
+      {t:'VMA',d:`⚡ VMA courte — 8×200m à ${vmaP}/km + retour. ~${Math.round(avg*.7)} km`,k:.7},
+      {t:'SL',d:`🏔️ SL modérée — ${Math.round(avg*1.3)} km à ${efP}/km`,k:1.3},
+      {t:'EF',d:`🏃 Footing technique — ${Math.round(avg*.8)} km + éducatifs`,k:.8},
+      {t:'EF',d:`🏃 EF tranquille — ${Math.round(avg*.7)} km`,k:.7},
+    ],
+    'SPÉCIFIQUE':[
+      {t:'EF',d:`🏃 EF — ${Math.round(avg)} km à ${efP}/km`,k:1},
+      {t:'SEUIL',d:`🎯 Seuil — 3×10' à ${svP}/km (r=3'). ~${Math.round(avg*1.1)} km`,k:1.1},
+      {t:'SL',d:`🏔️ SL ${isT?'D+':''} — ${Math.round(avg*1.8)} km, fin à ${svP}/km`,k:1.8},
+      {t:'VMA',d:`⚡ VMA — 10×400m à ${vmaP}/km (r=1'15). ~${Math.round(avg*.8)} km`,k:.8},
+      {t:'EF',d:`🏃 Footing + LD — ${Math.round(avg*.7)} km`,k:.7},
+      {t:'TEMPO',d:`💨 Tempo — 20' à ${smP}/km. ~${Math.round(avg*.9)} km`,k:.9},
+      {t:'EF',d:`🏃 EF récup — ${Math.round(avg*.6)} km`,k:.6},
+      {t:'SEUIL',d:`🎯 Seuil long — 2×15' à ${svP}/km. ~${Math.round(avg*1.2)} km`,k:1.2},
+      {t:'VMA',d:`⚡ VMA longue — 5×1000m à 95% VMA. ~${Math.round(avg)} km`,k:1},
+      {t:'EF',d:`🏃 Footing aisance — ${Math.round(avg*.7)} km`,k:.7},
+      {t:'SL',d:`🏔️ SL allure marathon — ${Math.round(avg*1.5)} km`,k:1.5},
+      {t:'EF',d:`🏃 Footing + stretching — ${Math.round(avg*.5)} km`,k:.5},
+    ],
+    'PRÉ-COMPÉTITION':[
+      {t:'EF',d:`🏃 EF — ${Math.round(avg*.9)} km`,k:.9},
+      {t:'ALLURE',d:`🎯 Allure course — 2×15' allure cible. ~${Math.round(avg)} km`,k:1},
+      {t:'SL',d:`🏔️ Dernière SL — ${Math.round(avg*1.5)} km à ${efP}/km`,k:1.5},
+      {t:'VMA',d:`⚡ 12×200m à ${vmaP}/km. ~${Math.round(avg*.7)} km`,k:.7},
+      {t:'EF',d:`🏃 Régénération — ${Math.round(avg*.6)} km`,k:.6},
+      {t:'SEUIL',d:`🎯 Rappel seuil — 2×8' à ${svP}/km. ~${Math.round(avg*.8)} km`,k:.8},
+    ],
+    'AFFÛTAGE':[
+      {t:'EF',d:`🏃 Footing léger — ${Math.round(avg*.7)} km`,k:.7},
+      {t:'RAPPEL',d:`⚡ Rappel — 5×200m vite. ~${Math.round(avg*.5)} km`,k:.5},
+      {t:'EF',d:`🏃 Footing + 4 accélérations — ${Math.round(avg*.6)} km`,k:.6},
+      {t:'EF',d:`🏃 Décrassage — ${Math.round(avg*.4)} km`,k:.4},
+    ],
+    'RÉCUPÉRATION':[
+      {t:'EF',d:`🏃 Récup — ${Math.round(avg*.8)} km. Zéro intensité.`,k:.8},
+      {t:'EF',d:`🏃 Léger — ${Math.round(avg*.7)} km`,k:.7},
+      {t:'SL',d:`🏔️ SL modérée — ${Math.round(avg*1.2)} km`,k:1.2},
+      {t:'EF',d:`🏃 Footing + étirements — ${Math.round(avg*.6)} km`,k:.6},
+    ],
+    'COURSE':[{t:'EF',d:`🏃 Activation — 20' tranquille`,k:.3}]
+  };
+  let tpls=T[phase]||T['DÉVELOPPEMENT'];
+  if(pt==='progressif')tpls=tpls.map(t=>(t.t==='VMA'||t.t==='SEUIL')?{t:'EF',d:`🏃 EF + accélérations douces — ${Math.round(avg*t.k)} km à ${efP}/km`,k:t.k}:t);
+  const tp=tpls[si%tpls.length];
+  return{type:tp.t,desc:tp.d,km:Math.round(avg*tp.k)};
+}
+
+function displayPlan(weeks,vma,dist,cType,tw,pt){
+  document.getElementById('genSec').style.display='none';
+  document.getElementById('planOutput').style.display='block';
+  const totalKm=weeks.reduce((s,w)=>s+w.totalKm,0);
+  const pn={'ffa':'FFA','80-20':'80/20','lydiard':'Lydiard','hit':'HIT','progressif':'Progressif'};
+  const cn={'route':'Route','trail-court':'Trail Court','trail-long':'Trail Long','cross':'Cross','piste':'Piste','obstacles':'Obstacles'};
+  document.getElementById('planSummary').innerHTML=`
+    <div class="summary-card"><div class="val">${tw}</div><div class="lbl">Semaines</div></div>
+    <div class="summary-card"><div class="val">${dist} km</div><div class="lbl">${cn[cType]||cType}</div></div>
+    <div class="summary-card"><div class="val">${vma} km/h</div><div class="lbl">VMA</div></div>
+    <div class="summary-card"><div class="val">${totalKm} km</div><div class="lbl">Vol. total</div></div>
+    <div class="summary-card"><div class="val">${pn[pt]}</div><div class="lbl">Méthode</div></div>`;
+
+  // Print profile
+  const age=document.getElementById('age').value;const poids=document.getElementById('poids').value;
+  const sexe=document.getElementById('sexe').value;const annees=document.getElementById('anneesPratique').value;
+  const fumeur=document.getElementById('fumeur').value;const shoe=document.getElementById('shoeType');
+  const shoeLabel=shoe.options[shoe.selectedIndex].text;const brand=document.getElementById('shoeBrand').value;
+  const r5=document.getElementById('record5').value;const r10=document.getElementById('record10').value;
+  const rS=document.getElementById('recordSemi').value;const rM=document.getElementById('recordMarathon').value;
+  const obj=document.getElementById('courseObj').value;
+
+  let profileHtml=`<h3 style="font-family:'Oswald';font-size:1rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;color:var(--cuivre)">Profil du coureur</h3><table style="width:100%;font-size:.78rem">`;
+  const rows=[];
+  if(age)rows.push(['Âge',age+' ans']);
+  if(poids)rows.push(['Poids',poids+' kg']);
+  if(sexe)rows.push(['Sexe',sexe==='H'?'Homme':'Femme']);
+  if(annees)rows.push(['Pratique',annees+' ans']);
+  rows.push(['VMA',vma+' km/h']);
+  rows.push(['Fumeur',fumeur==='oui'?'Oui':fumeur==='ex'?'Ex-fumeur':'Non']);
+  rows.push(['Chaussures',shoeLabel+(brand?' — '+brand:'')]);
+  if(r5)rows.push(['Record 5 km',r5]);if(r10)rows.push(['Record 10 km',r10]);
+  if(rS)rows.push(['Record Semi',rS]);if(rM)rows.push(['Record Marathon',rM]);
+  if(obj)rows.push(['Objectif chrono',obj]);
+  rows.push(['Course',`${dist} km ${cn[cType]||cType}`]);
+  rows.push(['Plan',pn[pt]]);
+  rows.push(['Running',document.getElementById('runSessions').value+' séances/sem']);
+  const bk=document.getElementById('bikeSessions').value;if(bk!=='0')rows.push(['Vélo',bk+' séances/sem']);
+  const rf=document.getElementById('renfoSessions').value;if(rf!=='0')rows.push(['Renfo',rf+' séances/sem']);
+
+  // Contraintes
+  const dn=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+  const contrs=[];
+  for(let i=0;i<7;i++){const v=document.getElementById('dispo_'+i).value;if(v!=='ok'){const r=document.getElementById('reasonText_'+i).value;contrs.push(dn[i]+': '+(v==='ko'?'indispo':v)+(r?' ('+r+')':''))}}
+  if(contrs.length)rows.push(['Contraintes',contrs.join(' | ')]);
+
+  profileHtml+=rows.map(r=>`<tr><th style="padding:4px 8px;text-align:left;color:var(--cuivre-clair);font-family:'Oswald';font-weight:500;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;width:120px">${r[0]}</th><td style="padding:4px 8px">${r[1]}</td></tr>`).join('');
+  profileHtml+='</table>';
+  document.getElementById('printProfile').innerHTML=profileHtml;
+
+  // Paces
+  const paces=[{p:.60,l:'Récup',n:'60%'},{p:.65,l:'EF',n:'65%'},{p:.70,l:'EA',n:'70%'},{p:.75,l:'Seuil 1',n:'75%'},{p:.80,l:'Seuil 2',n:'80%'},{p:.85,l:'i3',n:'85%'},{p:.90,l:'i4',n:'90%'},{p:.95,l:'i5',n:'95%'},{p:1,l:'VMA',n:'100%'}];
+  document.getElementById('pacesGrid').innerHTML=paces.map(p=>`<div class="pace-card"><div class="pp">${p.n} VMA</div><div class="pv">${vmaToPace(vma,p.p)}/km</div><div class="pl">${p.l} · ${vmaToSpeed(vma,p.p)} km/h</div></div>`).join('');
+
+  const container=document.getElementById('weeksContainer');container.innerHTML='';
+  const sd=new Date();sd.setHours(0,0,0,0);const dow=sd.getDay();sd.setDate(sd.getDate()+(dow===0?1:dow===1?0:8-dow));
+
+  weeks.forEach((w,idx)=>{
+    const ws=new Date(sd);ws.setDate(ws.getDate()+idx*7);const we=new Date(ws);we.setDate(we.getDate()+6);
+    const ds=`${ws.getDate()}/${ws.getMonth()+1} — ${we.getDate()}/${we.getMonth()+1}`;
+    const io=idx<2;const bl=document.createElement('div');bl.className='week-block';
+    bl.innerHTML=`
+      <div class="week-header" onclick="tW(this)">
+        <h3>S${w.num} — ${w.phase} <span style="font-weight:400;font-size:.73rem;color:var(--text-muted);margin-left:5px">${ds}</span></h3>
+        <div style="display:flex;align-items:center;gap:8px"><span class="wv">${w.totalKm} km</span><span class="chev ${io?'open':''}">▼</span></div>
+      </div>
+      <div class="week-body ${io?'open':''}">
+        ${w.days.map(d=>`<div class="day-row"><div class="day-name">${d.day}</div><div class="day-content">${d.sessionType!=='REPOS'?`<div class="st">${d.sessionType}</div>`:''}
+        <div class="${d.sessionType==='REPOS'?'rest-day':''}">${d.content.replace(/\n/g,'<br>')}</div></div><div class="day-km">${d.km>0?d.km+' km':'—'}</div></div>`).join('')}
+      </div>`;
+    container.appendChild(bl);
+  });
+  window._pd=weeks;notify('Plan généré !');
+}
+function tW(el){el.nextElementSibling.classList.toggle('open');el.querySelector('.chev').classList.toggle('open')}
+
+function exportCSV(){
+  if(!window._pd)return;let csv='Semaine;Phase;Jour;Type;Contenu;Km\n';
+  window._pd.forEach(w=>w.days.forEach(d=>{csv+=`${w.num};${w.phase};${d.day};${d.sessionType};"${d.content.replace(/\n/g,' | ').replace(/"/g,"'")}";${d.km}\n`}));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}));
+  a.download='plan_ROTWS.csv';a.click();notify('CSV exporté !');
+}
+
+// FOOD SELECTOR
+const foodData={
+  pdj:[
+    {n:'Flocons d\'avoine',cat:'gluc',score:3,icon:'🥣'},
+    {n:'Pain complet',cat:'gluc',score:3,icon:'🍞'},
+    {n:'Pain blanc',cat:'gluc',score:1,icon:'🥖'},
+    {n:'Céréales sucrées',cat:'gluc',score:0,icon:'🥣'},
+    {n:'Muesli / Granola',cat:'gluc',score:2,icon:'🥜'},
+    {n:'Banane',cat:'fruit',score:3,icon:'🍌'},
+    {n:'Fruits frais',cat:'fruit',score:3,icon:'🍎'},
+    {n:'Compote',cat:'fruit',score:2,icon:'🍏'},
+    {n:'Jus de fruits',cat:'fruit',score:1,icon:'🧃'},
+    {n:'Yaourt nature',cat:'prot',score:3,icon:'🥛'},
+    {n:'Fromage blanc',cat:'prot',score:3,icon:'🥛'},
+    {n:'Œufs',cat:'prot',score:3,icon:'🥚'},
+    {n:'Jambon',cat:'prot',score:2,icon:'🥓'},
+    {n:'Beurre',cat:'lipid',score:1,icon:'🧈'},
+    {n:'Miel',cat:'gluc',score:2,icon:'🍯'},
+    {n:'Confiture',cat:'gluc',score:1,icon:'🍓'},
+    {n:'Amandes / Noix',cat:'lipid',score:3,icon:'🥜'},
+    {n:'Café',cat:'boisson',score:1,icon:'☕'},
+    {n:'Thé vert',cat:'boisson',score:2,icon:'🍵'},
+    {n:'Lait chocolaté',cat:'prot',score:2,icon:'🥛'},
+    {n:'Viennoiserie',cat:'gluc',score:0,icon:'🥐'},
+    {n:'Rien (je saute le pdj)',cat:'rien',score:-2,icon:'⛔'},
+  ],
+  colmatin:[
+    {n:'Banane',cat:'fruit',score:3,icon:'🍌'},
+    {n:'Amandes',cat:'lipid',score:3,icon:'🥜'},
+    {n:'Barre de céréales',cat:'gluc',score:1,icon:'🍫'},
+    {n:'Fruit frais',cat:'fruit',score:3,icon:'🍎'},
+    {n:'Compote',cat:'fruit',score:2,icon:'🍏'},
+    {n:'Yaourt',cat:'prot',score:3,icon:'🥛'},
+    {n:'Biscuits',cat:'gluc',score:0,icon:'🍪'},
+    {n:'Fruits secs',cat:'fruit',score:3,icon:'🍇'},
+    {n:'Rien',cat:'rien',score:0,icon:'—'},
+  ],
+  dej:[
+    {n:'Riz / Pâtes / Quinoa',cat:'gluc',score:3,icon:'🍚'},
+    {n:'Pommes de terre',cat:'gluc',score:2,icon:'🥔'},
+    {n:'Pain',cat:'gluc',score:2,icon:'🥖'},
+    {n:'Légumes verts',cat:'legume',score:3,icon:'🥦'},
+    {n:'Salade / Crudités',cat:'legume',score:3,icon:'🥗'},
+    {n:'Poulet / Dinde',cat:'prot',score:3,icon:'🍗'},
+    {n:'Poisson',cat:'prot',score:3,icon:'🐟'},
+    {n:'Viande rouge',cat:'prot',score:2,icon:'🥩'},
+    {n:'Œufs',cat:'prot',score:3,icon:'🥚'},
+    {n:'Légumineuses',cat:'prot',score:3,icon:'🫘'},
+    {n:'Fromage',cat:'lipid',score:1,icon:'🧀'},
+    {n:'Huile d\'olive / Colza',cat:'lipid',score:3,icon:'🫒'},
+    {n:'Fruit / Compote',cat:'fruit',score:3,icon:'🍎'},
+    {n:'Yaourt',cat:'prot',score:2,icon:'🥛'},
+    {n:'Fast-food / Sandwich',cat:'gluc',score:0,icon:'🍔'},
+    {n:'Plat en sauce',cat:'lipid',score:0,icon:'🍲'},
+    {n:'Eau',cat:'boisson',score:3,icon:'💧'},
+    {n:'Soda',cat:'boisson',score:-1,icon:'🥤'},
+  ],
+  colapm:[
+    {n:'Banane',cat:'fruit',score:3,icon:'🍌'},
+    {n:'Amandes / Noix',cat:'lipid',score:3,icon:'🥜'},
+    {n:'Fruit frais',cat:'fruit',score:3,icon:'🍎'},
+    {n:'Pain d\'épices',cat:'gluc',score:2,icon:'🍞'},
+    {n:'Barre protéinée',cat:'prot',score:2,icon:'💪'},
+    {n:'Gâteau / Biscuit',cat:'gluc',score:0,icon:'🍰'},
+    {n:'Chocolat noir',cat:'lipid',score:2,icon:'🍫'},
+    {n:'Fruits secs',cat:'fruit',score:3,icon:'🍇'},
+    {n:'Rien',cat:'rien',score:0,icon:'—'},
+  ],
+  diner:[
+    {n:'Riz / Pâtes / Semoule',cat:'gluc',score:3,icon:'🍚'},
+    {n:'Soupe de légumes',cat:'legume',score:3,icon:'🥣'},
+    {n:'Légumes cuits',cat:'legume',score:3,icon:'🥦'},
+    {n:'Salade',cat:'legume',score:3,icon:'🥗'},
+    {n:'Poisson',cat:'prot',score:3,icon:'🐟'},
+    {n:'Poulet / Dinde',cat:'prot',score:3,icon:'🍗'},
+    {n:'Œufs',cat:'prot',score:2,icon:'🥚'},
+    {n:'Tofu / Tempeh',cat:'prot',score:3,icon:'🌱'},
+    {n:'Fromage',cat:'lipid',score:1,icon:'🧀'},
+    {n:'Yaourt / Fromage blanc',cat:'prot',score:2,icon:'🥛'},
+    {n:'Fruit / Compote',cat:'fruit',score:2,icon:'🍎'},
+    {n:'Pain',cat:'gluc',score:2,icon:'🥖'},
+    {n:'Pizza / Burger',cat:'gluc',score:0,icon:'🍕'},
+    {n:'Tisane',cat:'boisson',score:2,icon:'🍵'},
+    {n:'Alcool',cat:'boisson',score:-2,icon:'🍷'},
+    {n:'Eau',cat:'boisson',score:2,icon:'💧'},
+  ]
+};
+
+function buildFoodSelectors(){
+  Object.keys(foodData).forEach(meal=>{
+    const el=document.getElementById('food-'+meal);
+    if(!el)return;
+    el.innerHTML=foodData[meal].map((f,i)=>`<div class="food-chip" data-meal="${meal}" data-idx="${i}" onclick="toggleFood(this)">${f.icon} ${f.n}</div>`).join('');
+  });
+}
+function toggleFood(el){el.classList.toggle('selected')}
+
+function analyzeDiet(){
+  const results={gluc:0,prot:0,lipid:0,fruit:0,legume:0,boisson:0,rien:0,total:0,count:0,tips:[]};
+  const selected={};
+
+  Object.keys(foodData).forEach(meal=>{
+    selected[meal]=[];
+    document.querySelectorAll(`#food-${meal} .food-chip.selected`).forEach(chip=>{
+      const idx=parseInt(chip.dataset.idx);
+      const food=foodData[meal][idx];
+      selected[meal].push(food);
+      results[food.cat]=(results[food.cat]||0)+1;
+      results.total+=food.score;
+      results.count++;
+    });
+  });
+
+  if(results.count<5){notify('Sélectionne au moins 5 aliments sur la journée !');return}
+
+  // Score calculation (0-100)
+  const maxScore=results.count*3;
+  const pct=Math.max(0,Math.min(100,Math.round((results.total/maxScore)*100)));
+
+  // Generate tips
+  const tips=[];
+  if(results.gluc<3)tips.push('⚡ Augmente tes glucides complexes (riz, pâtes, flocons d\'avoine) — c\'est le carburant n°1 du coureur.');
+  if(results.prot<2)tips.push('💪 Ajoute des protéines (œufs, poulet, poisson, légumineuses) pour la récupération musculaire.');
+  if(results.fruit<2)tips.push('🍎 Plus de fruits ! Vitamines, antioxydants et sucres naturels sont tes alliés.');
+  if(results.legume<2)tips.push('🥦 Les légumes apportent fibres, minéraux et micronutriments essentiels. Vise 2-3 portions/jour.');
+  if(results.rien>0)tips.push('⛔ Ne saute pas le petit-déjeuner ! C\'est le repas clé du coureur, surtout les jours d\'entraînement.');
+  if(results.boisson<2)tips.push('💧 Pense à bien t\'hydrater tout au long de la journée (eau, tisane, thé vert).');
+  if(selected.diner?.some(f=>f.n.includes('Alcool')))tips.push('🍷 L\'alcool nuit à la récupération, au sommeil et à la performance. Limite-le en période d\'entraînement.');
+  if(selected.dej?.some(f=>f.n.includes('Fast-food')))tips.push('🍔 Les fast-foods sont pauvres en nutriments et riches en mauvaises graisses. Privilégie les repas faits maison.');
+  if(selected.dej?.some(f=>f.n.includes('Soda')))tips.push('🥤 Les sodas apportent du sucre vide. Remplace-les par de l\'eau ou du thé.');
+  if(results.lipid>0 && !selected.dej?.some(f=>f.n.includes('olive')))tips.push('🫒 Privilégie les bonnes graisses (huile d\'olive, colza, noix, amandes) aux graisses saturées.');
+  if(pct>=75)tips.push('✅ Ton alimentation semble bien adaptée à la course ! Continue comme ça.');
+  if(results.gluc>=4&&results.prot>=3&&results.fruit>=2)tips.push('🏆 Excellent équilibre glucides/protéines/fruits — profil nutrition de coureur performant !');
+
+  const scoreClass=pct>=70?'score-good':pct>=45?'score-ok':'score-bad';
+  const scoreLabel=pct>=70?'Bon':pct>=45?'À améliorer':'Insuffisant';
+
+  let html=`<div class="food-score">
+    <h3 class="sub-title" style="margin-top:0">Score nutritionnel coureur</h3>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+      <span style="font-family:'Oswald';font-size:1.8rem;font-weight:700;color:var(--cuivre)">${pct}/100</span>
+      <span style="font-size:.85rem;color:var(--text-muted)">${scoreLabel}</span>
+    </div>
+    <div class="score-bar"><div class="score-fill ${scoreClass}" style="width:${pct}%"></div></div>
+    <div class="sim-factors" style="margin-top:12px">
+      <div class="sim-factor"><div class="sf-val">${results.gluc||0}</div><div class="sf-lbl">Glucides</div></div>
+      <div class="sim-factor"><div class="sf-val">${results.prot||0}</div><div class="sf-lbl">Protéines</div></div>
+      <div class="sim-factor"><div class="sf-val">${results.fruit||0}</div><div class="sf-lbl">Fruits</div></div>
+      <div class="sim-factor"><div class="sf-val">${results.legume||0}</div><div class="sf-lbl">Légumes</div></div>
+      <div class="sim-factor"><div class="sf-val">${results.lipid||0}</div><div class="sf-lbl">Lipides</div></div>
+    </div>
+    ${tips.length?`<div class="food-tips" style="margin-top:14px"><h4 style="font-family:'Oswald';font-size:.85rem;color:var(--cuivre);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Conseils personnalisés</h4>${tips.map(t=>`<div class="food-tip">${t}</div>`).join('')}</div>`:''}
+  </div>`;
+  document.getElementById('dietResult').style.display='block';
+  document.getElementById('dietResult').innerHTML=html;
+  notify('Bilan nutritionnel calculé !');
+}
+
+// PERFORMANCE SIMULATOR
+function runSimulator(){
+  const vma=getVMA();
+  if(!vma||vma<8){notify('Renseigne ta VMA dans Profil !');switchTab('profil');return}
+
+  const age=parseInt(document.getElementById('age').value)||35;
+  const poids=parseFloat(document.getElementById('poids').value)||70;
+  const sexe=document.getElementById('sexe').value||'H';
+  const annees=parseInt(document.getElementById('anneesPratique').value)||2;
+  const fumeur=document.getElementById('fumeur').value;
+  const shoeType=document.getElementById('shoeType').value;
+  const r5=document.getElementById('record5').value;
+  const r10=document.getElementById('record10').value;
+  const rSemi=document.getElementById('recordSemi').value;
+  const cType=document.getElementById('courseType').value;
+  const dist=parseFloat(document.getElementById('courseDistCustom').value||document.getElementById('courseDistPreset').value)||10;
+
+  // Parse reference time if available
+  let refDist=0,refTimeSec=0;
+  if(r10){const p=parseTime(r10);if(p>0){refDist=10;refTimeSec=p}}
+  else if(r5){const p=parseTime(r5);if(p>0){refDist=5;refTimeSec=p}}
+  else if(rSemi){const p=parseTime(rSemi);if(p>0){refDist=21.1;refTimeSec=p}}
+
+  // Distances to simulate
+  const distances=[
+    {d:5,name:'5 km'},
+    {d:10,name:'10 km'},
+    {d:15,name:'15 km'},
+    {d:21.1,name:'Semi-marathon'},
+    {d:42.195,name:'Marathon'},
+  ];
+
+  // Add target distance if custom
+  if(dist && !distances.some(x=>Math.abs(x.d-dist)<0.5)){
+    distances.push({d:dist,name:`${dist} km (objectif)`});
+    distances.sort((a,b)=>a.d-b.d);
+  }
+
+  // Factors
+  const factors=[];
+
+  // Age factor (peak 25-35, decline ~0.7%/year after 40)
+  let ageFactor=1;
+  if(age>40)ageFactor=1-(age-40)*0.007;
+  else if(age<20)ageFactor=0.95;
+  factors.push({name:'Âge',val:ageFactor,label:age+' ans'});
+
+  // Sex factor (women typically ~10-12% slower)
+  let sexFactor=sexe==='F'?0.89:1;
+  factors.push({name:'Sexe',val:sexFactor,label:sexe==='F'?'Femme':'Homme'});
+
+  // Experience factor
+  let expFactor=1;
+  if(annees>=10)expFactor=1.03;
+  else if(annees>=5)expFactor=1.01;
+  else if(annees<=1)expFactor=0.95;
+  factors.push({name:'Expérience',val:expFactor,label:annees+' ans'});
+
+  // Smoke factor
+  let smokeFactor=1;
+  if(fumeur==='oui')smokeFactor=0.92;
+  else if(fumeur==='ex')smokeFactor=0.97;
+  factors.push({name:'Tabac',val:smokeFactor,label:fumeur==='oui'?'Fumeur':fumeur==='ex'?'Ex-fumeur':'Non'});
+
+  // Shoe factor
+  let shoeFactor=1;
+  if(shoeType==='carbone')shoeFactor=1.025;
+  else if(shoeType==='tempo')shoeFactor=1.01;
+  else if(shoeType==='minimaliste')shoeFactor=0.99;
+  factors.push({name:'Chaussures',val:shoeFactor,label:document.getElementById('shoeType').options[document.getElementById('shoeType').selectedIndex].text});
+
+  // Weight factor (lighter = faster, ~1% per kg from ideal)
+  const idealWeight=sexe==='F'?(170*170*20/10000):(175*175*22/10000); // rough BMI-based
+  let weightFactor=1;
+  if(poids>idealWeight*1.15)weightFactor=0.96;
+  else if(poids>idealWeight*1.05)weightFactor=0.98;
+  else if(poids<idealWeight*0.95)weightFactor=1.01;
+  factors.push({name:'Poids',val:weightFactor,label:poids+' kg'});
+
+  const globalFactor=factors.reduce((p,f)=>p*f.val,1);
+
+  // Prediction methods
+  const predictions=distances.map(dd=>{
+    let timeSec;
+
+    if(refDist>0 && refTimeSec>0){
+      // Riegel formula: T2 = T1 × (D2/D1)^1.06
+      timeSec=refTimeSec*Math.pow(dd.d/refDist,1.06);
+    } else {
+      // VMA-based: use % VMA sustainable for distance
+      // Mercier table: 5km=93%, 10km=88%, 15km=85%, semi=83%, marathon=78%
+      const pctVma=dd.d<=5?0.93:dd.d<=10?0.88:dd.d<=15?0.85:dd.d<=21.5?0.83:dd.d<=30?0.80:0.78;
+      const speed=vma*pctVma; // km/h
+      timeSec=(dd.d/speed)*3600;
+    }
+
+    // Apply profile factors
+    // For sex factor, only apply if we used VMA-based (VMA already accounts for sex if tested)
+    let adjustedTime=timeSec;
+    if(refDist>0){
+      // If using records, don't apply sex/age again (already baked in record)
+      adjustedTime=timeSec * (1/shoeFactor); // shoe can still help
+    } else {
+      adjustedTime=timeSec / globalFactor;
+    }
+
+    // Trail adjustment
+    if(cType?.includes('trail')){
+      adjustedTime*=dd.d<=21?1.15:1.25; // trail is slower
+    }
+
+    return{
+      dist:dd.d,
+      name:dd.name,
+      time:Math.round(adjustedTime),
+      pace:adjustedTime/dd.d,
+    };
+  });
+
+  // Find best for bar chart
+  const fastest5kPace=predictions.find(p=>p.dist===5)?.pace||300;
+
+  let html=`<div class="sim-result">
+    <h3 class="sub-title" style="margin-top:0">Performances estimées</h3>
+    <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:14px">${refDist>0?'Basé sur ton record '+refDist+'km + modèle de Riegel':'Basé sur ta VMA ('+vma+' km/h) + table de Mercier'} — ajusté selon ton profil</p>
+    ${predictions.map(p=>{
+      const h=Math.floor(p.time/3600);const m=Math.floor((p.time%3600)/60);const s=Math.round(p.time%60);
+      const timeStr=h>0?`${h}h${m.toString().padStart(2,'0')}'${s.toString().padStart(2,'0')}"`:
+                    `${m}'${s.toString().padStart(2,'0')}"`;
+      const pm=Math.floor(p.pace/60);const ps=Math.round(p.pace%60);
+      const paceStr=`${pm}'${ps.toString().padStart(2,'0')}"/km`;
+      const barW=Math.max(10,Math.min(100,(fastest5kPace/p.pace)*100));
+      const isTarget=p.name.includes('objectif');
+      return`<div class="sim-row" ${isTarget?'style="background:var(--cuivre-glow);border-radius:5px;padding:10px 8px"':''}>
+        <div class="sim-dist">${isTarget?'🎯 ':''} ${p.name}</div>
+        <div>
+          <div class="sim-time">${timeStr}</div>
+          <div class="sim-bar"><div class="sim-bar-fill" style="width:${barW}%"></div></div>
+        </div>
+        <div class="sim-pace">${paceStr}</div>
+      </div>`;
+    }).join('')}
+
+    <h3 class="sub-title" style="margin-top:20px">Facteurs appliqués</h3>
+    <div class="sim-factors">
+      ${factors.map(f=>{
+        const pct=Math.round((f.val-1)*100);
+        const cls=pct>0?'positive':pct<0?'negative':'';
+        return`<div class="sim-factor ${cls}"><div class="sf-val">${pct>=0?'+':''}${pct}%</div><div class="sf-lbl">${f.name}: ${f.label}</div></div>`;
+      }).join('')}
+    </div>
+    <p style="font-size:.7rem;color:var(--text-muted);margin-top:12px;font-style:italic">⚠️ Ces estimations sont indicatives. Les conditions de course (météo, dénivelé, état de forme du jour) influencent fortement le résultat réel.</p>
+  </div>`;
+
+  document.getElementById('simResult').style.display='block';
+  document.getElementById('simResult').innerHTML=html;
+  notify('Simulation calculée !');
+}
+
+function parseTime(str){
+  if(!str)return 0;
+  str=str.trim();
+  // Handle formats: 22:30, 1:45:00, 47:00, 3h30
+  if(str.includes('h')){
+    const p=str.split('h');
+    const h=parseInt(p[0])||0;
+    const m=parseInt(p[1])||0;
+    return h*3600+m*60;
+  }
+  const parts=str.split(':');
+  if(parts.length===3)return(parseInt(parts[0])||0)*3600+(parseInt(parts[1])||0)*60+(parseInt(parts[2])||0);
+  if(parts.length===2){
+    const a=parseInt(parts[0])||0,b=parseInt(parts[1])||0;
+    if(a>59)return a*60+b; // already minutes:seconds for short times
+    return a*60+b;
+  }
+  return 0;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('courseDate').min=new Date().toISOString().split('T')[0];
+  document.getElementById('refDistance').addEventListener('change',estimateVMA);
+  renderGlossary();buildDispoGrid();buildFoodSelectors();
+});
+</script>
+</body>
+</html>
